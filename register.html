@@ -1,0 +1,29 @@
+<form id="registerForm">
+  <input id="name">
+  <input id="email">
+  <input id="password">
+  <select id="role">
+    <option>Customer</option>
+    <option>Admin</option>
+  </select>
+  <button>Register</button>
+</form>
+
+<script>
+document.getElementById("registerForm").onsubmit = async e => {
+  e.preventDefault();
+
+  const res = await fetch("/api/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name: name.value,
+      email: email.value,
+      password: password.value,
+      role: role.value
+    })
+  });
+
+  if (res.ok) alert("Registered!");
+};
+</script>
